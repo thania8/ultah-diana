@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Diana 🎉</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body, html {
+      width: 100%;
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+    }
+    section {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      width: 100%;
+      flex-direction: column;
+      text-align: center;
+      transition: all 1s ease-in-out;
+    }
+    .show { display: flex !important; }
+
+    /* Scene 1 */
+    #scene1 {
+      background: black;
+      color: white;
+      font-size: 3rem;
+      font-weight: bold;
+      letter-spacing: 5px;
+    }
+    #happyText span {
+      opacity: 0;
+      animation: appear 5s forwards;
+      display: inline-block;
+    }
+    @keyframes appear {
+      0% { opacity: 0; transform: translateY(20px); }
+      50% { opacity: 1; color: #ff4fa3; }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Scene 2 - Cake */
+    #scene2 {
+      background: linear-gradient(to bottom, #cce7ff, #ffffff);
+      color: #333;
+    }
+    .cake {
+      position: relative;
+      width: 220px;
+      height: 200px;
+      margin-bottom: 20px;
+    }
+    .plate {
+      position: absolute;
+      bottom: 0;
+      width: 260px;
+      height: 40px;
+      background: #e6e6e6;
+      border-radius: 50%;
+      left: -20px;
+    }
+    .cake-body {
+      position: absolute;
+      bottom: 40px;
+      width: 220px;
+      height: 150px;
+    }
+    .layer {
+      width: 100%;
+      height: 50px;
+      border-radius: 15px;
+      margin-bottom: 5px;
+    }
+    .layer1 { background: #66b3ff; }
+    .layer2 { background: #99ccff; }
+    .layer3 { background: #cce6ff; }
+    .cream {
+      position: absolute;
+      bottom: 120px;
+      width: 220px;
+      height: 20px;
+      background: white;
+      border-radius: 50%;
+    }
+    .candles {
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 15px;
+    }
+    .candle {
+      width: 10px;
+      height: 30px;
+      background: #fff;
+      border-radius: 3px;
+      position: relative;
+    }
+    .flame {
+      width: 10px;
+      height: 15px;
+      background: radial-gradient(circle, yellow 40%, orange 70%, transparent 90%);
+      border-radius: 50%;
+      position: absolute;
+      top: -15px;
+      left: 0;
+      animation: flicker 0.5s infinite alternate;
+      box-shadow: 0 0 10px yellow;
+    }
+    @keyframes flicker {
+      from { transform: scale(1) translateY(0); opacity: 1; }
+      to { transform: scale(1.2) translateY(-2px); opacity: 0.8; }
+    }
+
+    /* Scene 2 background hitam */
+#scene2 {
+  background: black;
+  position: relative;
+  overflow: hidden; /* biar sparkle ga bocor keluar */
+  color: white; /* biar teksnya keliatan */
+}
+
+/* Animasi kue muncul satu-satu */
+#scene2 .cake img {
+  opacity: 0;
+  transform: translateY(50px);
+  animation: munculKue 1s forwards;
+}
+
+#scene2 .cake img:nth-child(1) { animation-delay: 0.3s; }
+#scene2 .cake img:nth-child(2) { animation-delay: 0.6s; }
+#scene2 .cake img:nth-child(3) { animation-delay: 0.9s; }
+
+@keyframes munculKue {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Sparkle jatuh */
+.sparkle {
+  position: absolute;
+  top: -20px;
+  width: 15px;
+  height: 15px;
+  background: yellow;
+  border-radius: 50%;
+  box-shadow: 0 0 10px gold, 0 0 20px white;
+  animation: jatuh 5s linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes jatuh {
+  from {
+    transform: translateY(-20px) rotate(0deg);
+  }
+  to {
+    transform: translateY(110vh) rotate(360deg);
+  }
+}
+
+    /* Next Button */
+    .nextBtn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: white;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+    .nextBtn:hover { background: #ffb6c1; }
+
+    /* Scene 3 */
+    #scene3 video {
+      width: 80%;
+      max-width: 600px;
+      border-radius: 15px;
+    }
+
+    #scene4 {
+  background: repeating-linear-gradient(
+    45deg,
+    #a7c7e7,
+    #a7c7e7 20px,
+    #dceeff 20px,
+    #dceeff 40px
+  );
+  flex-direction: column;
+  gap: 30px;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Semua foto di gallery ukurannya sama */
+.gallery img {
+  width: 180px;       /* ukuran lebar */
+  height: 250px;      /* ukuran tinggi */
+  object-fit: cover;  /* biar proporsional, ga ketarik aneh */
+  border-radius: 15px;
+  margin: 10px;
+}
+
+/* Biar foto rata tengah */
+.gallery {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px; /* jarak antar foto */
+  flex-wrap: wrap; /* biar responsif */
+}
+
+/* Tulisan DIANA di atas foto & rata tengah */
+.gallery-title {
+  text-align: center;
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* Falling icons */
+.falling-icon {
+  position: absolute;
+  top: -50px;
+  font-size: 2rem;
+  animation: fall linear infinite;
+  opacity: 0.8;
+}
+@keyframes fall {
+  from { transform: translateY(-50px); }
+  to { transform: translateY(100vh); }
+}
+
+/* Tambahan untuk Scene 4 */
+
+/* Tulisan DIANA lebih besar & bold */
+.gallery p {
+  width: 100%;
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* Teks ucapan biar bold */
+#scene4 .card p {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/* Textarea & tombol lebih besar */
+#scene4 .message-box textarea {
+  width: 350px;
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #aaa;
+}
+
+#scene4 .message-box button {
+  margin-top: 10px;
+  padding: 10px 18px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  background-color: #ff69b4;
+  color: white;
+  cursor: pointer;
+}
+
+#scene4 .message-box button:hover {
+  background-color: #ff4081;
+}
+
+/* Background kotak-kotak biru-pink */
+#scene4 {
+  background: 
+    linear-gradient(90deg, #add8e6 50%, transparent 50%),
+    linear-gradient(#ffc0cb 50%, transparent 50%);
+  background-size: 40px 40px; 
+}
+  </style>
+</head>
+<body>
+
+  <!-- Scene 1 -->
+  <section id="scene1" class="show">
+    <div id="happyText"></div>
+    <audio id="music1" autoplay>
+      <source src="musik/it-s-my-first-birthday-elegant-fun-265683.mp3" type="audio/mp3">
+    </audio>
+  </section>
+
+  <!-- Scene 2 -->
+  <section id="scene2">
+    <div class="cake">
+      <div class="plate"></div>
+      <div class="cake-body">
+        <div class="layer layer1"></div>
+        <div class="layer layer2"></div>
+        <div class="layer layer3"></div>
+      </div>
+      <div class="cream"></div>
+      <div class="candles">
+        <div class="candle"><div class="flame"></div></div>
+        <div class="candle"><div class="flame"></div></div>
+        <div class="candle"><div class="flame"></div></div>
+      </div>
+    </div>
+    <audio id="music2">
+      <source src="musik/it-s-my-first-birthday-elegant-fun-265683.mp3" type="audio/mp3">
+    </audio>
+    <button class="nextBtn" onclick="goToScene(3)">✨ Lanjut ✨</button>
+  </section>
+
+  <!-- Scene 3 -->
+  <section id="scene3">
+    <video id="bdayVideo" autoplay controls>
+      <source src="vid/vid kadep.mp4" type="video/mp4">
+    </video>
+  </section>
+
+  <!-- Scene 4 -->
+  <section id="scene4">
+    <div id="scene4">
+      <div class="gallery-title">DIANA ❤️</div>
+      <div class="gallery">
+        <img src="foto/kadep.jpg" alt="foto1">
+        <img src="foto/kadep2.jpg" alt="foto2">
+        <img src="foto/kadep1.jpg" alt="foto3">
+      <p>DIANA 💖</p>
+    </div>
+    <div class="card">
+      <h1>Happy Birthday Diana 🎉</h1>
+      <p>anjai kaka aku ultah guyss, ga tau lagi umur berapa.. tebak sendiri aja deh 💖</p>
+      <div class="message-box">
+        <textarea id="ucapan" rows="3" placeholder="Tulis ucapanmu di sini..."></textarea>
+        <button onclick="simpanUcapan()">Simpan Ucapan</button>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Scene 1 text animation
+    const text = "HAPPY BIRTHDAY";
+    const container = document.getElementById("happyText");
+    text.split("").forEach((char, i) => {
+      const span = document.createElement("span");
+      span.textContent = char;
+      span.style.animationDelay = `${i * 0.3}s`;
+      container.appendChild(span);
+    });
+    setTimeout(() => goToScene(2), 5000);
+
+    function goToScene(n) {
+      document.querySelectorAll("section").forEach(s => s.classList.remove("show"));
+      document.getElementById("scene"+n).classList.add("show");
+
+      // musik kontrol
+      if(n === 2){
+        document.getElementById("music1").pause();
+        document.getElementById("music2").play();
+      }
+    }
+
+    // Video end → next scene
+    const video = document.getElementById("bdayVideo");
+    if(video){
+      video.addEventListener("ended", () => goToScene(4));
+    }
+
+    // Simpan ucapan ke localStorage
+    function simpanUcapan(){
+      const val = document.getElementById("ucapan").value;
+      if(val.trim() === ""){
+        alert("Isi ucapan dulu ya ✨");
+        return;
+      }
+      localStorage.setItem("ucapanDiana", val);
+      alert("Ucapan tersimpan otomatis 🎉");
+    }
+    // Load ucapan
+    window.onload = () => {
+      const saved = localStorage.getItem("ucapanDiana");
+      if(saved){
+        document.getElementById("ucapan").value = saved;
+      }
+    }
+
+    // Ikon jatuh blink
+const icons = ["🎂", "💙", "✨", "🎁", "🌸"];
+function createIcon() {
+  const icon = document.createElement("div");
+  icon.classList.add("falling-icon");
+  icon.innerText = icons[Math.floor(Math.random() * icons.length)];
+  icon.style.left = Math.random() * window.innerWidth + "px";
+  icon.style.animationDuration = (3 + Math.random() * 3) + "s";
+  document.getElementById("scene4").appendChild(icon);
+
+  setTimeout(() => icon.remove(), 6000);
+}
+setInterval(createIcon, 500);
+
+  function buatSparkle(sceneId) {
+    const scene = document.getElementById(sceneId);
+    if (!scene) return;
+
+    const sparkle = document.createElement("div");
+    sparkle.classList.add("sparkle");
+    sparkle.style.left = Math.random() * scene.offsetWidth + "px";
+    sparkle.style.animationDuration = (Math.random() * 3 + 2) + "s";
+    scene.appendChild(sparkle);
+
+    setTimeout(() => {
+      sparkle.remove();
+    }, 5000);
+  }
+
+  // Sparkle hanya di Scene 1 & Scene 2
+  setInterval(() => buatSparkle("scene1"), 400);
+  setInterval(() => buatSparkle("scene2"), 400);
+  </script>
+</body>
+</html>
